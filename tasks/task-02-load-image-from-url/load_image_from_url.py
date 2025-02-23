@@ -3,23 +3,28 @@ import cv2 as cv
 import numpy as np
 
 def load_image_from_url(url, **kwargs):
-    # Check for any invalid keyword arguments
+        """
+    Loads an image from an Internet URL with optional arguments for OpenCV's cv.imdecode.
+    
+    Parameters:
+    - url (str): URL of the image.
+    - **kwargs: Additional keyword arguments for cv.imdecode (e.g., flags=cv.IMREAD_GRAYSCALE).
+    
+    Returns:
+    - image: Loaded image as a NumPy array.
+    """
+    
+    ### START CODE HERE ###
     valid_kwargs = {'flags'}
     invalid_keys = set(kwargs.keys()) - valid_kwargs
     if invalid_keys:
         raise TypeError(f"Invalid keyword argument(s): {', '.join(invalid_keys)}")
-    
-    # Set default flags if not provided
-    flags = kwargs.get('flags', cv.IMREAD_COLOR)
-    
-    # Download the image from the URL
+        
+    flags = kwargs.get('flags', cv.IMREAD_COLOR)    
     response = requests.get(url)
-    response.raise_for_status()  # Raise an exception for HTTP errors
-    
-    # Convert the response content to a numpy array
+    response.raise_for_status()  
     image_array = np.frombuffer(response.content, dtype=np.uint8)
-    
-    # Decode the image using OpenCV
     image = cv.imdecode(image_array, flags)
+    ### END CODE HERE ###
     
     return image
