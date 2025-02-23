@@ -47,4 +47,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-#comando: python pdi_atv_1.py --registration_number 12345 --width 800 --height 600 --mean 128 --std 30 --output imagem_gerada.png
+#comando: task-01-generate-an-image.py --registration_number 12345 --width 800 --height 600 --mean 128 --std 30 --output imagem_gerada.png
